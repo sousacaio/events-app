@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Image, Text, View, Button, TouchableHighlight } from 'react-native';
+import { Image, Text, View, Button, TouchableHighlight, StyleSheet } from 'react-native';
 import styled from 'styled-components/native';
 import AsyncStorage from '@react-native-community/async-storage';
 import api from '../services/api';
