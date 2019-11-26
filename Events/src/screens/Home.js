@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Image, Text, View, Button, TouchableHighlight, StyleSheet } from 'react-native';
+import {Image, Text, View, Button, TouchableHighlight, StyleSheet } from 'react-native';
 import styled from 'styled-components/native';
 import AsyncStorage from '@react-native-community/async-storage';
 import api from '../services/api';
@@ -7,16 +7,33 @@ import api from '../services/api';
 
 const Page = styled.SafeAreaView`
     flex:1;
-    justifyContent:center;
-    align-items:center;
-
-    background-color:#343a40;
+    justifyContent: center;
+    align-items: center;
+    position: absolute;
+    margin-left: 20px;
+`;
+const Prot = styled.View`
+    background-color: transparent;
+    flex:1;
+    justifyContent: center;
+    align-items: center;
+    margin-left: 12px;
 `;
 const Title = styled.Text`
 	font-size: 48px;
-	font-weight: 600;
-	color: #DF4723;
+    font-weight: 600;
+    font-weight: bold;
+	color: #B22222;
 `;
+const Fundo = styled.ImageBackground`
+    flex:1;
+    width: 500px;
+
+`;
+const Botao = styled.TouchableHighlight`
+    borderRadius: 10;
+`;
+
 const Dashboard = (props) => {
 
     const [nome, setNome] = useState('')
@@ -34,42 +51,45 @@ const Dashboard = (props) => {
     }
     
     return (
-        <Page>
-            <Title>Olá {nome}</Title>
+    <Fundo source={require('../images/fundo2.jpg')}>
+        <Page><Prot>
+           <Title>Olá {nome}</Title> 
+           </Prot>
             <View>
-                <TouchableHighlight onPress={() => { criar() }}>
-                    <View style={{ width: 200, height: 200, flexDirection: 'row', margin: 24 }}>
+                <Botao onPress={() => { criar() }}>
+                    <View style={{ width: 165, height: 165, flexDirection: 'row', margin: 20 }}>
                         <Image
-
-                            style={{ width: 200, height: 200, position: 'absolute', backgroundColor: '#DF4723' }}
+                            style={{ width: 165, height: 165, position: 'absolute', backgroundColor: '#DF4723', borderRadius: 10 }}
                             source={{ uri: 'https://static.thenounproject.com/png/232752-200.png' }}
                         />
-                        <View style={{ flex: 1, backgroundColor: 'rgba(0, 0, 0, 0.5)', alignSelf: 'flex-end' }}>
-                            <Text style={{ color: 'white', fontSize: 20, margin: 6 }}>Meus eventos</Text>
+                        <View style={{ flex: 1, backgroundColor: 'rgba(0, 0, 0, 0.5)', alignSelf: 'flex-end', borderRadius: 10 }}>
+                            <Text style={{ color: 'white', fontSize: 20, margin: 6, fontWeight: 'bold' }}>Meus eventos</Text>
                         </View>
                     </View>
-                </TouchableHighlight>
-                <TouchableHighlight onPress={() => { Eventos() }}>
-                    <View style={{ width: 200, height: 200, flexDirection: 'row', margin: 24, borderRadius: 10 }}>
+                </Botao>
+                <Botao onPress={() => { Eventos() }}>
+                    <View style={{ width: 165, height: 165, flexDirection: 'row', margin: 20}}>
                         <Image
-                            resizeMode='contain'
-                            style={{ width: 200, height: 200, position: 'absolute', backgroundColor: '#DF4723' }}
+                            //resizeMode='contain'
+                            style={{ width: 165, height: 165, position: 'absolute', backgroundColor: '#DF4723', borderRadius: 10 }}
                             source={{ uri: 'https://carlisletheacarlisletheatre.org/images/party-png-icon-5.png' }}
                         />
-                        <View style={{ flex: 1, backgroundColor: 'rgba(0, 0, 0, 0.5)', alignSelf: 'flex-end' }}>
-                            <Text style={{ color: 'white', fontSize: 20, margin: 6 }}>Próximos eventos</Text>
+                        <View style={{ flex: 1, backgroundColor: 'rgba(0, 0, 0, 0.5)', alignSelf: 'flex-end', borderRadius: 10 }}>
+                            <Text style={{ color: 'white', fontSize: 20, margin: 6, fontWeight: 'bold' }}>Próximos eventos</Text>
                         </View>
                     </View>
-                </TouchableHighlight>
+                </Botao>
             </View>
         </Page >
+    </Fundo>
     );
 }
 
 Dashboard.navigationOptions = () => {
     return {
         header: null,
-        headerMode: 'none'
+        headerMode: 'none',
+
     }
 }
 export default Dashboard;

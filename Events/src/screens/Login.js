@@ -48,6 +48,12 @@ const Title = styled.Text`
 	font-weight: bold;
 	color: red;
 `;
+const Titulo = styled.Text`
+    padding: 20px;
+	font-size: 18px;
+	font-weight: bold;
+	color: black;
+`;
 const Fundo = styled.ImageBackground`
       flex: 1;
       width: 590px;
@@ -60,6 +66,16 @@ const Login = (props) => {
     function cadastro() {
         props.navigation.navigate('Cadastro');
     }
+    useEffect(() => {
+        function confereLogin() {
+            if (AsyncStorage.getItem('@token_event')) {
+                props.navigation.navigate('Dashboard');
+            } else {
+
+            }
+        }
+        confereLogin()
+    }, [])
     async function logar() {
         if (!email || !senha) {
             alert('Preencha todos os campos!');
@@ -88,7 +104,7 @@ const Login = (props) => {
             <Input value={email} onChangeText={e => setEmail(e)} placeholder="E-mail" placeholderTextColor="dimgray" />
             <Input value={senha} onChangeText={e => setSenha(e)} placeholder="Password" placeholderTextColor="dimgray" />
             <Botao onPress={() => logar()} ><Btntexto>Conectar</Btntexto></Botao>
-            <Title onPress={() => cadastro()}>Não é cadastrado? Registre-se!</Title>
+            <Titulo>Não é cadastrado?<Title onPress={() => cadastro()}> Registre-se!</Title></Titulo>
             </Prot>
         </Page>
         </Fundo>
@@ -104,10 +120,10 @@ Login.navigationOptions = () => {
             flex:1, 
         },
           headerStyle: {
-              backgroundColor: 'black',
+              backgroundColor: 'white',
               
           },
-          headerTintColor: '#white',
+          headerTintColor: 'red',
     }           
 
 }

@@ -7,23 +7,41 @@ import Axios from 'axios';
 
 const Page = styled.SafeAreaView`
     flex:1;
-    justifyContent:center;
-    align-items:center;
-
-    background-color:#343a40;
+    justifyContent: center;
+    align-items: center;
+`;
+const Title = styled.Text`
+	font-size: 30px;
+    margin-bottom: 10px;
+    font-weight: bold;
+	color: red;
 `;
 const Input = styled.TextInput`
     fontSize:15;
-    border:1px solid;
-    width:250px;
+    border-width: 1;
+    border-radius: 10;
+    width:200px;
     height:50px;
+    margin:10px;
     background-color:white;
 `;
-const Botao = styled.Button`
-width: 200px;
-height: 40px
-padding: 12px;
-border-radius: 10px;    
+const Botao = styled.TouchableOpacity`
+    width: 200px;
+    height: 40px;
+    padding: 12px;
+    border-radius: 10;    
+    background-color:#B22222;
+    margin: 10px;
+    margin-bottom: 2px;
+`;
+const Btntexto = styled.Text`
+	font-size: 15px;
+	color: white;
+    text-align: center;
+    font-weight: bold;
+    `;    
+    const Fundo = styled.ImageBackground`
+    flex: 1;
 `;
 
 const Cadastro = (props) => {
@@ -52,19 +70,35 @@ const Cadastro = (props) => {
     }
 
     return (
+        <Fundo source={require('../images/fundo.jpg')}>
         <Page>
+        <Title>C A D A S T R O</Title> 
             <Input value={email} onChangeText={e => setEmail(e)} placeholder="Email" />
             <Input value={nome} onChangeText={e => setNome(e)} placeholder="Nome" />
             <Input value={senha} onChangeText={e => setSenha(e)} placeholder="Senha" />
             <Input value={telefone} onChangeText={e => setTelefone(e)} placeholder="Telefone" />
-            <Button title="Cadastrar" onPress={() => cadastrar()} />
+            <Botao onPress={() => cadastrar()} ><Btntexto>Cadastrar</Btntexto></Botao>
         </Page>
+        </Fundo>
     );
 }
 
 Cadastro.navigationOptions = () => {
     return {
-        title: 'Cadastro'
+   
+            title: '',
+            
+            headerTitleStyle: { 
+                textAlign:"center", 
+                flex:1, 
+            },
+              headerStyle: {
+                  backgroundColor: 'white',
+                  
+              },
+              headerTintColor: 'red',
+              fontWeight: 'bold'
+        }           
+    
     }
-}
 export default Cadastro;
