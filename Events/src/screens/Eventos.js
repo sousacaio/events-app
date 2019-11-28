@@ -11,6 +11,7 @@ const Page = styled.SafeAreaView`
        background-color:#343a40;
 `;
 
+
 const ButtonContainer = styled.TouchableOpacity`
 	width: 300px;
 	height: 40px
@@ -123,8 +124,18 @@ const styles = StyleSheet.create({
 });
 Eventos.navigationOptions = () => {
     return {
-        header: null,
-        headerMode: 'none'
+        title: 'E V E N T S',
+
+        headerTitleStyle: {
+            textAlign: "center",
+            flex: 1,
+        },
+        headerStyle: {
+            backgroundColor: 'black',
+
+        },
+        headerTintColor: '#white',
     }
+
 }
 export default Eventos;

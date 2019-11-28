@@ -1,9 +1,16 @@
-import { createDrawerNavigator } from 'react-navigation-drawer';
+import { createStackNavigator } from 'react-navigation-stack';
 import MainStack from './StackNavigator';
 
-const Drawer = createDrawerNavigator({
+const Drawer = createStackNavigator({
     MainStack: {
-        screen: MainStack
+        screen: MainStack,
+        navigationOptions: {
+            header: null, //hide header if not needed so whole screen slide  
+        },
+    }
+}, {
+    defaultNavigationOptions: {
+        header: false
     }
 });
 

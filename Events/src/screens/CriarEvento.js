@@ -127,10 +127,4 @@ const styles = StyleSheet.create({
         fontSize: 15,
     },
 });
-Criar.navigationOptions = () => {
-    return {
-        header: null,
-        headerMode: 'none'
-    }
-}
 export default Criar;

@@ -3,13 +3,12 @@ import { Image, Text, View, Button, TouchableHighlight } from 'react-native';
 import styled from 'styled-components/native';
 import AsyncStorage from '@react-native-community/async-storage';
 import api from '../services/api';
+import { Col, Row, Grid } from "react-native-easy-grid";
 
 
 const Page = styled.SafeAreaView`
     flex:1;
-    justifyContent:center;
-    align-items:center;
-
+        
     background-color:#343a40;
 `;
 const Title = styled.Text`
@@ -32,44 +31,117 @@ const Dashboard = (props) => {
     function Eventos() {
         props.navigation.navigate('Eventos')
     }
-    
-    return (
-        <Page>
-            <Title>Olá {nome}</Title>
-            <View>
-                <TouchableHighlight onPress={() => { criar() }}>
-                    <View style={{ width: 200, height: 200, flexDirection: 'row', margin: 24 }}>
-                        <Image
+    function MinhaConta() {
+        props.navigation.navigate('MinhaConta')
+    }
+    function Sair() {
+        AsyncStorage.clear();
+        props.navigation.navigate('Login')
+    }
+    function confirmar(){
+        props.navigation.navigate('Confirmar')
+    }
+    useEffect(() => {
 
-                            style={{ width: 200, height: 200, position: 'absolute', backgroundColor: '#DF4723' }}
-                            source={{ uri: 'https://static.thenounproject.com/png/232752-200.png' }}
-                        />
-                        <View style={{ flex: 1, backgroundColor: 'rgba(0, 0, 0, 0.5)', alignSelf: 'flex-end' }}>
-                            <Text style={{ color: 'white', fontSize: 20, margin: 6 }}>Meus eventos</Text>
+        AsyncStorage.getItem('@id').then((id) => { if (id !== null) { setId(id) } else { props.navigation.navigate('Login') } });;
+        AsyncStorage.getItem('@token_event').then((token_event) => { if (token_event !== null) { setToken_event(token_event) } else { props.navigation.navigate('Login') } });;
+        AsyncStorage.getItem('@nome').then((nome) => { if (nome !== null) { setNome(nome) } else { props.navigation.navigate('Login') } });
+
+
+    }, []);
+
+    return (
+        <Grid style={{ backgroundColor: '#343a40' }}>
+
+            <Row >
+                <Col style={{ left: 10 }}>
+                    <Row style={{ alignItems: 'center' }}>
+                        <View style={{ flex: 1 }}>
+                            <TouchableHighlight onPress={() => { criar() }}>
+                                <View style={{ width: 150, height: 150, flexDirection: 'row', }}>
+                                    <Image
+
+                                        style={{ width: 150, height: 150, position: 'absolute', backgroundColor: '#DF4723' }}
+                                        source={{ uri: 'https://static.thenounproject.com/png/232752-200.png' }}
+                                    />
+                                    <View style={{ flex: 1, backgroundColor: 'rgba(0, 0, 0, 0.5)', alignSelf: 'flex-end' }}>
+                                        <Text style={{ color: 'white', fontSize: 20, }}>Meus eventos</Text>
+                                    </View>
+                                </View>
+                            </TouchableHighlight>
                         </View>
-                    </View>
-                </TouchableHighlight>
-                <TouchableHighlight onPress={() => { Eventos() }}>
-                    <View style={{ width: 200, height: 200, flexDirection: 'row', margin: 24, borderRadius: 10 }}>
-                        <Image
-                            resizeMode='contain'
-                            style={{ width: 200, height: 200, position: 'absolute', backgroundColor: '#DF4723' }}
-                            source={{ uri: 'https://carlisletheacarlisletheatre.org/images/party-png-icon-5.png' }}
-                        />
-                        <View style={{ flex: 1, backgroundColor: 'rgba(0, 0, 0, 0.5)', alignSelf: 'flex-end' }}>
-                            <Text style={{ color: 'white', fontSize: 20, margin: 6 }}>Próximos eventos</Text>
+                    </Row>
+                    <Row style={{ alignItems: 'center' }}>
+                        <View style={{ flex: 1 }}>
+                            <TouchableHighlight onPress={() => { Eventos() }}>
+                                <View style={{ width: 150, height: 150, flexDirection: 'row', borderRadius: 10 }}>
+                                    <Image
+                                        resizeMode='contain'
+                                        style={{ width: 150, height: 150, position: 'absolute', backgroundColor: '#DF4723' }}
+                                        source={{ uri: 'https://carlisletheacarlisletheatre.org/images/party-png-icon-5.png' }}
+                                    />
+                                    <View style={{ flex: 1, backgroundColor: 'rgba(0, 0, 0, 0.5)', alignSelf: 'flex-end' }}>
+                                        <Text style={{ color: 'white', fontSize: 20, }}>Próximos eventos</Text>
+                                    </View>
+                                </View>
+                            </TouchableHighlight>
                         </View>
-                    </View>
-                </TouchableHighlight>
-            </View>
-        </Page >
+                    </Row>
+                    <Row style={{ alignItems: 'center' }} size={1}>
+                        <View style={{ flex: 1 }}>
+                            <TouchableHighlight onPress={() => { Sair() }}>
+                                <View style={{ width: 150, height: 150, flexDirection: 'row', borderRadius: 10 }}>
+                                    <Image
+                                        resizeMode='contain'
+                                        style={{ width: 150, height: 150, position: 'absolute', backgroundColor: '#DF4723' }}
+                                        source={{ uri: 'https://icon-library.net/images/logout-icon-png/logout-icon-png-26.jpg' }}
+                                    />
+                                    <View style={{ flex: 1, backgroundColor: 'rgba(0, 0, 0, 0.5)', alignSelf: 'flex-end' }}>
+                                        <Text style={{ color: 'white', fontSize: 20, }}>Sair</Text>
+                                    </View>
+                                </View>
+                            </TouchableHighlight>
+                        </View>
+                    </Row>
+                </Col>
+                <Col style={{ left: 10 }}>
+                    <Row style={{ alignItems: 'center' }}>
+                        <View style={{ flex: 1 }}>
+                            <TouchableHighlight onPress={() => { MinhaConta() }}>
+                                <View style={{ width: 150, height: 150, flexDirection: 'row', borderRadius: 10 }}>
+                                    <Image
+                                        resizeMode='contain'
+                                        style={{ width: 150, height: 150, position: 'absolute', backgroundColor: '#DF4723' }}
+                                        source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/6/6d/Windows_Settings_app_icon.png' }}
+                                    />
+                                    <View style={{ flex: 1, backgroundColor: 'rgba(0, 0, 0, 0.5)', alignSelf: 'flex-end' }}>
+                                        <Text style={{ color: 'white', fontSize: 20, }}>Minha conta</Text>
+                                    </View>
+                                </View>
+                            </TouchableHighlight>
+                        </View>
+                    </Row>
+                    <Row style={{ alignItems: 'center' }}>
+                        <View style={{ flex: 1 }}>
+                            <TouchableHighlight onPress={() => { confirmar() }}>
+                                <View style={{ width: 150, height: 150, flexDirection: 'row', borderRadius: 10 }}>
+                                    <Image
+                                        resizeMode='contain'
+                                        style={{ width: 150, height: 150, position: 'absolute', backgroundColor: '#DF4723' }}
+                                        source={{ uri: 'http://simpleicon.com/wp-content/uploads/add-user.png' }}
+                                    />
+                                    <View style={{ flex: 1, backgroundColor: 'rgba(0, 0, 0, 0.5)', alignSelf: 'flex-end' }}>
+                                        <Text style={{ color: 'white', fontSize: 20, }}>Confirmar Evento</Text>
+                                    </View>
+                                </View>
+                            </TouchableHighlight>
+                        </View>
+                    </Row>
+                </Col>
+            </Row>
+
+        </Grid >
     );
 }
 
-Dashboard.navigationOptions = () => {
-    return {
-        header: null,
-        headerMode: 'none'
-    }
-}
 export default Dashboard;

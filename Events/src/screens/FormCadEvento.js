@@ -65,7 +65,8 @@ const FormCadEvento = (props) => {
             })
                 .then(function (response) {
                     console.log(response)
-                    alert(`https://backevents.onrender.com/api/accept/${response.data.event._id}`)
+                    alert('Evento criado com sucesso!')
+                    props.navigation.navigate('Eventos')
                 }).catch(function (error) {
                     console.log(error);
                 });
@@ -136,11 +137,7 @@ const FormCadEvento = (props) => {
     );
 }
 
-FormCadEvento.navigationOptions = () => {
-    return {
-        title: 'Cadastro de evento'
-    }
-}
+
 export default FormCadEvento;
 
 {/* <Span>Data e hora de início</Span>

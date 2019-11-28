@@ -4,7 +4,8 @@ import Criar from '../screens/CriarEvento';
 import FormCadEvento from '../screens/FormCadEvento';
 import VerEvento from '../screens/VerEvento';
 import Eventos from '../screens/Eventos';
-
+import MinhaConta from '../screens/MinhaConta';
+import Confirmar from '../screens/Confirmar';
 
 const MainStack = createStackNavigator({
     Dashboard: {
@@ -21,21 +22,15 @@ const MainStack = createStackNavigator({
     },
     Eventos: {
         screen: Eventos
-    }
+    },
+    MinhaConta: {
+        screen: MinhaConta
+    },
+    Confirmar: { screen: Confirmar }
 }, {
     initialRouteName: 'Dashboard',
     defaultNavigationOptions: {
-        headerStyle: {
-            backfaceVisibility: 'hidden',
-            backgroundColor: '#DF4723',
-            height: 100
-        },
-        headerTitleStyle: {
-            fontSize: 30,
-            alignSelf: 'center',
-        },
-        headerTintColor: '#FFF',
-
+        header: null
     }
 }
 );
