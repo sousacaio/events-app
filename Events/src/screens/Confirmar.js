@@ -51,6 +51,7 @@ const Title = styled.Text`
 	color: red;
 `;
 const Confirmar = (props) => {
+    const [status, setStatus] = useState('');
     const [nome, setNome] = useState('');
     const [link, setLink] = useState([]);
     const [token_event, setToken_event] = useState('');
@@ -68,7 +69,24 @@ const Confirmar = (props) => {
                     events: link,
                     guest: id
                 }
-            }).then((r) => { console.log(r) })
+            }).then((r) => {
+                console.log(r)
+                
+                switch (r.status) {
+                    case 403:
+                        alert('evento já realizado!');
+                        break;
+                    case 409:
+                        alert('Você é o organizador desse evento!');
+                        break;
+                    case 200:
+                        alert('Presença confirmada com sucesso!');
+                        break;
+
+                }
+
+            })
+
         } catch (error) {
             console.log(error)
         }

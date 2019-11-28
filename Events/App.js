@@ -5,3 +5,4 @@ import Drawer from './src/navigators/HomeDrawer';
 
 export default createAppContainer(MainNavigator);
 
+console.disableYellowBox = true;

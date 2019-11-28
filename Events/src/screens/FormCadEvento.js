@@ -47,6 +47,8 @@ const FormCadEvento = (props) => {
         if (!name || !local || !limit || !start || !end) {
             alert('Preencha todos os campos!');
         } else {
+            console.log(start)
+            console.log(end)
             const dataInicio = moment(start).format();
             const dataFim = moment(end).format();
             await api.post('/event', {
@@ -66,7 +68,7 @@ const FormCadEvento = (props) => {
                 .then(function (response) {
                     console.log(response)
                     alert('Evento criado com sucesso!')
-                    props.navigation.navigate('Eventos')
+                    props.navigation.navigate('Criar')
                 }).catch(function (error) {
                     console.log(error);
                 });
@@ -85,11 +87,11 @@ const FormCadEvento = (props) => {
                 <Span>Data e hora de início</Span>
                 <DatePicker
                     style={{ width: 300 }}
-                    date={end}
+                    date={start}
+                    is24Hour={true}
                     mode="datetime"
                     placeholder="Selecione o começo"
-                    format="YYYY-MM-DD HH:MM"
-                    minDate="03-11-2019"
+                    format="YYYY-MM-DD HH:mm"
                     confirmBtnText="Confirma"
                     cancelBtnText="Cancela"
                     customStyles={{
@@ -104,16 +106,16 @@ const FormCadEvento = (props) => {
                         }
                         // ... You can check the source to find the other keys.
                     }}
-                    onDateChange={(end) => { setEnd(end) }}
+                    onDateChange={(end) => { setStart(end) }}
                 />
                 <Span>Data e hora final</Span>
                 <DatePicker
                     style={{ width: 300 }}
-                    date={start}
+                    date={end}
                     mode="datetime"
+                    is24Hour={true}
                     placeholder="Selecione o final"
-                    format="YYYY-MM-DDTHH:MM"
-                    minDate="03-11-2019"
+                    format="YYYY-MM-DD HH:mm"
                     confirmBtnText="Confirma"
                     cancelBtnText="Cancela"
                     customStyles={{
@@ -127,7 +129,7 @@ const FormCadEvento = (props) => {
                             marginLeft: 36
                         }
                     }}
-                    onDateChange={(date) => { setStart(date) }}
+                    onDateChange={(date) => { setEnd(date) }}
                 />
                 <Button title="Cadastrar evento" onPress={cadastrarEvento} />
 
