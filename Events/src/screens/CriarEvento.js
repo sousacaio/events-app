@@ -6,21 +6,28 @@ import AsyncStorage from '@react-native-community/async-storage';
 import api from '../services/api';
 import moment from 'moment';
 import { Card, Avatar, Badge, Icon } from 'react-native-elements'
+
+const Fundo = styled.ImageBackground`
+    flex:1;
+`;
 const Page = styled.SafeAreaView`
        flex:1;
-       background-color:#343a40;
-`;
 
-const ButtonContainer = styled.TouchableOpacity`
+`;
+const Botao = styled.TouchableOpacity`
 	width: 300px;
-	height: 40px
+	height: 40px;
 	padding: 12px;
-    border-radius: 10px;	
-    left:30px;
-    right:30px;
-	background-color: ${props => props.backgroundColor};
+    border-radius: 10;	
+    background-color: #B22222;
+    justifyContent: center;
+    align-items: center;
 `;
-
+const Prot = styled.View`
+    flex:1;
+    justifyContent: center;
+    align-items: center;
+`;
 const ButtonText = styled.Text`
 	font-size: 15px;
 	color: ${props => props.textColor};
@@ -80,14 +87,15 @@ const Criar = (props) => {
     });
     return (
         <>
+        <Fundo source={require('../images/fundo2.jpg')}>
             <Page >
-                <View style={{ flex: 1, flexDirection: 'row', marginTop: 10 }}>
-                    <ButtonContainer backgroundColor="#DF4723" onPress={() => formCadEvento()}  >
+                <Prot style={{ flex: 1, flexDirection: 'row', marginTop: 10 }}>
+                    <Botao onPress={() => formCadEvento()}  >
                         <ButtonText textColor="white">Criar evento</ButtonText>
-                    </ButtonContainer>
-                </View>
-                <View style={{ flex: 7, top: 10 }}>
-                    <Card title="Meus eventos:">
+                    </Botao>
+                </Prot>
+                <View style={{ flex: 7, top: 10, }}>
+                    <Card title="Meus eventos:" style={{Color: '#B22222'}}>
                         {
                             events.map((u, i) => {
                                 return (
@@ -103,7 +111,7 @@ const Criar = (props) => {
                     </Card>
                 </View>
             </Page>
-
+        </Fundo>
         </>
     );
 }

@@ -25,6 +25,7 @@ const MainStack = createStackNavigator({
 }, {
     initialRouteName: 'Dashboard',
     defaultNavigationOptions: {
+        title: 'H O M E',
         headerStyle: {
             backfaceVisibility: 'hidden',
             backgroundColor: '#DF4723',

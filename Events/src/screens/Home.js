@@ -13,25 +13,27 @@ const Page = styled.SafeAreaView`
     margin-left: 20px;
 `;
 const Prot = styled.View`
-    background-color: transparent;
+    background-color: #B22222;
     flex:1;
     justifyContent: center;
     align-items: center;
-    margin-left: 12px;
+
+    width: 120%;
 `;
 const Title = styled.Text`
 	font-size: 48px;
     font-weight: 600;
     font-weight: bold;
-	color: #B22222;
+    color: white;
+
 `;
 const Fundo = styled.ImageBackground`
     flex:1;
-    width: 500px;
 
 `;
 const Botao = styled.TouchableHighlight`
     borderRadius: 10;
+
 `;
 
 const Dashboard = (props) => {
@@ -57,9 +59,9 @@ const Dashboard = (props) => {
            </Prot>
             <View>
                 <Botao onPress={() => { criar() }}>
-                    <View style={{ width: 165, height: 165, flexDirection: 'row', margin: 20 }}>
+                    <View style={{width: 165, height: 165, flexDirection: 'row', margin: 15}}>
                         <Image
-                            style={{ width: 165, height: 165, position: 'absolute', backgroundColor: '#DF4723', borderRadius: 10 }}
+                            style={{ width: 165, height: 165,  position: 'absolute', backgroundColor: '#B22222', borderRadius: 10 }}
                             source={{ uri: 'https://static.thenounproject.com/png/232752-200.png' }}
                         />
                         <View style={{ flex: 1, backgroundColor: 'rgba(0, 0, 0, 0.5)', alignSelf: 'flex-end', borderRadius: 10 }}>
@@ -68,10 +70,10 @@ const Dashboard = (props) => {
                     </View>
                 </Botao>
                 <Botao onPress={() => { Eventos() }}>
-                    <View style={{ width: 165, height: 165, flexDirection: 'row', margin: 20}}>
+                    <View style={{ width: 165, height: 165, flexDirection: 'row', margin: 15}}>
                         <Image
                             //resizeMode='contain'
-                            style={{ width: 165, height: 165, position: 'absolute', backgroundColor: '#DF4723', borderRadius: 10 }}
+                            style={{ width: 165, height: 165, position: 'absolute', backgroundColor: '#B22222', borderRadius: 10 }}
                             source={{ uri: 'https://carlisletheacarlisletheatre.org/images/party-png-icon-5.png' }}
                         />
                         <View style={{ flex: 1, backgroundColor: 'rgba(0, 0, 0, 0.5)', alignSelf: 'flex-end', borderRadius: 10 }}>

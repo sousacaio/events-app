@@ -138,7 +138,9 @@ const FormCadEvento = (props) => {
 
 FormCadEvento.navigationOptions = () => {
     return {
-        title: 'Cadastro de evento'
+        header: null,
+        headerMode: 'none',
+
     }
 }
 export default FormCadEvento;
